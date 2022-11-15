@@ -9,7 +9,6 @@ module.exports.createParcel = async (req, res, next) => {
     const { error } = parcelCheck(req.body);
     if (error)
       return res.status(400).send({ message: error.details[0].message });
-
     const parcel = new Parcel(req.body);
     const result = await parcel.save();
     res.status(201).send({

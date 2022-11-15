@@ -15,6 +15,29 @@ const customButton = withReactContent(Swal.mixin({
   buttonsStyling: false
 }))
 
+function toRad(Value) 
+{
+    return Value * Math.PI / 180;
+}
+
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': 'dbf9a8d3c8msh7b12824b0a8a0d9p174ff2jsn2d8d40697936',
+		'X-RapidAPI-Host': 'india-pincode-with-latitude-and-longitude.p.rapidapi.com'
+	}
+};
+
+const longitude = async (pincode) => {
+  const res = await
+  fetch('https://india-pincode-with-latitude-and-longitude.p.rapidapi.com/api/v1/pincode/'+pincode.toString(), options)
+  const data = await res.json();
+  console.log(data[0].lat);
+  return data[0];
+}
+
+
+
 export const ParcelForm = ({ token, user }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false);
@@ -35,12 +58,12 @@ export const ParcelForm = ({ token, user }) => {
   const handleChange = (e) => {
     setData({...data, [e.target.name]: e.target.value})
   }
-
+  
   const finalData = {
     recipient: {name: name.firstName + ' ' + name.lastName, email: data.email},
     sender: user._id,
-    price: "$".concat(parseInt(data.weight * 100).toString()),
-    trackingCode: "LK".concat(Math.random().toString(36).slice(2, 7).toUpperCase()),
+    price: "Rs".concat(parseInt(data.weight * 100).toString()),
+    trackingCode: "IN".concat(Math.random().toString(36).slice(2, 7).toUpperCase()),
     locationFrom: data.locationFrom,
     locationTo: data.locationTo,
     weight: data.weight,
@@ -51,6 +74,42 @@ export const ParcelForm = ({ token, user }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
+    const cord1 = await longitude(835207);
+    const cord2 = await longitude(835220);
+    console.log(cord1);
+    console.log(cord2);
+    // var R = 6371; // km
+    // var dLat = toRad(parseFloat(destination.lat)-parseFloat(origin.lat));
+    // var dLon = toRad(parseFloat(destination.lng)-parseFloat(origin.lng));
+    // var lat1 = toRad(parseFloat(origin.lat));
+    // var lat2 = toRad(parseFloat(destination.lat));
+    // var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+    //     Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+    //   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    //   var d = R * c;
+    const radlat1 = (Math.PI * cord1.lat) / 180;
+  const radlat2 = (Math.PI * cord2.lat) / 180;
+
+  const theta = cord2.lng - cord1.lng;
+  const radtheta = (Math.PI * theta) / 180;
+
+  let dist =
+    Math.sin(radlat1) * Math.sin(radlat2) +
+    Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+
+  if (dist > 1) {
+    dist = 1;
+  }
+
+  dist = Math.acos(dist);
+  dist = (dist * 180) / Math.PI;
+  dist = dist * 60 * 1.1515;
+  dist = dist * 1.609344; //convert miles to km
+  console.log(finalData.weight);
+  console.log(parseInt(finalData.weight));
+  
+      console.log("Distance" + dist);
+    finalData.price = "Rs. ".concat(parseInt(dist*5*parseInt(finalData.weight)).toString());
     const res = await ParcelService.createParcel(token, finalData)
     console.log(res)
     customButton.fire(res.status, res.message, 'success')
