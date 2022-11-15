@@ -5,7 +5,7 @@ import Navbar from './Navbar'
 import Sidebar from './Sidebar'
 import TableLoader from './TableLoader'
 import Recent from './Recent'
-import MiniMap from './MiniMap'
+//import MiniMap from './MiniMap'
 import Progress from './Progress'
 import OrdersAnalytics from './ordersAnalytics'
 import OrderSummary from './OrderSummary'
@@ -19,7 +19,7 @@ export {
     Sidebar,
     TableLoader,
     Recent,
-    MiniMap,
+   // MiniMap,
     Progress,
     OrdersAnalytics,
     OrderSummary

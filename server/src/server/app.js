@@ -30,8 +30,8 @@ app.use(function (req, res, next) {
 });
 
 app.use(RateLimit);
-app.use("/api/v1/", Router, search, parcel);
-app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("", Router, search, parcel);
+app.use('', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
 

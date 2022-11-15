@@ -6,7 +6,7 @@ import { faCloudUploadAlt, faPlus, faTasks, faUserShield } from '@fortawesome/fr
 import { Col, Row, Button, Dropdown, ButtonGroup } from '@themesberg/react-bootstrap';
 
 
-import { Recent, MiniMap } from "../../components/index";
+import { Recent } from "../../components/index";
 import { ParcelService } from "../../service/ParcelService";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../../routes";
@@ -79,7 +79,7 @@ const UserDashboard = ({ token, user }) => {
             <Col xs={12} xl={4}>
               <Row>
                 <Col xs={12} className="mb-4">
-                 <MiniMap />
+                 {/* <MiniMap /> */}
                 </Col>
               </Row>
             </Col>

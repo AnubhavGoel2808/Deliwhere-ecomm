@@ -9,7 +9,7 @@ import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-direct
 import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css'
 
 const MiniMap = () => {
-    mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
+    // mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
     const containerRef = useRef(null)
 
     useEffect(() => {

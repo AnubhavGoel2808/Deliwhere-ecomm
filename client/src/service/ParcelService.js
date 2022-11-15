@@ -1,8 +1,9 @@
-const API = process.env.REACT_APP_API_URL
+const API = "http://localhost:5000"
 
 
 const fetchItem = async (id, token) => {
     const res = await fetch(`${API}/parcels/${id}`, {
+        mode : "no-cors",
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

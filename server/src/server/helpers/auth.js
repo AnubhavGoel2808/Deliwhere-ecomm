@@ -9,7 +9,7 @@ exports.authenticateToken = (req, res, next) => {
       message: "Unauthorized, Missing Access Token",
     });
 
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+  jwt.verify(token, "shh123secret", (err, user) => {
     console.log(err);
     if (err)
       return res
@@ -20,7 +20,7 @@ exports.authenticateToken = (req, res, next) => {
 };
 
 exports.generateAccessToken = (user) => {
-  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 86400 });
+  return jwt.sign(user, "shh123secret", { expiresIn: 86400 });
 };
 
 exports.checkUser = (req, res, id, next) => {

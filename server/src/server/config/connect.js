@@ -1,24 +1,24 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
-const { DEVELOPMENT, PRODUCTION, LOCAL, TEST } = require("./envTypes");
+const  DB_URL  = process.env.DB_URL;
 
-let DB_URL;
-switch (process.env.NODE_ENV) {
-  case DEVELOPMENT:
-    DB_URL = process.env.DB_URL_DEV;
-    break;
-  case PRODUCTION:
-    DB_URL = process.env.DB_URL_PROD;
-    break;
-  case LOCAL:
-    DB_URL = process.env.DB_URL_LOC;
-    break;
-  case TEST:
-    DB_URL = process.env.DB_URL_TEST
-    break;
-  default:
-    DB_URL = process.env.DB_URL;
-}
+// let DB_URL = ;
+// switch (process.env.NODE_ENV) {
+//   case DEVELOPMENT:
+//     DB_URL = process.env.DB_URL_DEV;
+//     break;
+//   case PRODUCTION:
+//     DB_URL = process.env.DB_URL_PROD;
+//     break;
+//   case LOCAL:
+//     DB_URL = process.env.DB_URL_LOC;
+//     break;
+//   case TEST:
+//     DB_URL = process.env.DB_URL_TEST
+//     break;
+//   default:
+//     DB_URL = process.env.DB_URL;
+// }
 
 const options = {
   useNewUrlParser: true,
@@ -26,9 +26,9 @@ const options = {
 };
 
 function establishConnection() {
-  console.log("\nEstablishing Database Connection . . . ");
+  console.log("\nEstablishing Database Connection . . . " , process.env.DB_URL);
   mongoose
-    .connect(DB_URL, options)
+    .connect("mongodb+srv://user0:user0@cluster0.mqiitp8.mongodb.net/?retryWrites=true&w=majority", options)
     .then(() => {
       console.info("\nDatabase Connection Established!");
     })
