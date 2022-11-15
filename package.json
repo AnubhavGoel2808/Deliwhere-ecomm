@@ -1,0 +1,28 @@
+{
+  "name": "safe-courier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "cd server && npm start",
+    "client": "cd client && npm start",
+    "start": "concurrently \"npm:server\" \"npm:client\"",
+    "test": "cd server && npm install && npm test",
+    "build": "cd client && npm install && npm run build",
+    "instDep": "concurrently \"cd server && npm install\" \"cd client && npm install\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kallyas/safe-courier.git"
+  },
+  "keywords": [],
+  "author": "Kallyas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kallyas/safe-courier/issues"
+  },
+  "homepage": "https://github.com/kallyas/safe-courier#readme",
+  "dependencies": {
+    "concurrently": "^6.3.0"
+  }
+}
