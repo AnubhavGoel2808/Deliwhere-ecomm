@@ -1,3 +1,15 @@
-# safe-courier
+# Deli-Where
 
-Safe courier is a courier service that helps users deliver parcels to different destinations. safe courier provides courier quotes based on weight categories
+DeliWhere is a one stop solution for all types of deliveries. It provides different types of courier services for most, if not all types of goods. DeliWhere provides safe and low-cost deliveries.
+
+Team Members
+1. Anubhav 
+2. Archit
+3. Neeraj
+4. Moksh
+5. Ojasvi
+6. Pragati
+7. Prakhar
+8. Saurabh
+9. Umang
+10. Yashika

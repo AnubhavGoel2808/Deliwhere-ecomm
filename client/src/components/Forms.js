@@ -99,7 +99,7 @@ export const GeneralInfoForm = () => {
               </Form.Group>
             </Col>
             <Col sm={4} className="mb-3">
-              <Form.Group className="mb-2">
+              {/* <Form.Group className="mb-2">
                 <Form.Label>Select state</Form.Label>
                 <Form.Select id="state" defaultValue="0">
                   <option value="0">State</option>
@@ -155,7 +155,7 @@ export const GeneralInfoForm = () => {
                   <option value="WI">Wisconsin</option>
                   <option value="WY">Wyoming</option>
                 </Form.Select>
-              </Form.Group>
+              </Form.Group> */}
             </Col>
             <Col sm={4}>
               <Form.Group id="zip">
