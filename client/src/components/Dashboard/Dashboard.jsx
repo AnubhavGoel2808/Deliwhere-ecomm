@@ -264,11 +264,11 @@ function Dashboard({ token }) {
           )}
           <div className="row"></div>
         </div>
-        <div className="page-footer">
+        {/* <div className="page-footer">
           <p>
             Made with <i className="fa fa-heart"></i> by Iden
           </p>
-        </div>
+        </div> */}
       </div>
     </>
   );

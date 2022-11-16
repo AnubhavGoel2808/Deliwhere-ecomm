@@ -56,6 +56,8 @@ export const ParcelForm = ({ token, user }) => {
     city: '',
     parcelType: '',
     weight: '',
+    pincodeOrigin: '',
+    pincodeDest: ''
   })
 
   const handleName = (e) => {
@@ -83,8 +85,8 @@ export const ParcelForm = ({ token, user }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    const cord1 = await longitude(835207);
-    const cord2 = await longitude(835220);
+    const cord1 = await longitude(parseInt(data.pincodeOrigin));
+    const cord2 = await longitude(parseInt(data.pincodeDest));
     console.log(cord1);
     console.log(cord2);
     // var R = 6371; // km
@@ -266,11 +268,23 @@ export const ParcelForm = ({ token, user }) => {
               </Form.Group>
             </Col>
             <Col sm={4} className="mb-3">
-              <Form.Group className="mb-2">
-                <Form.Label>Select state</Form.Label>
-                <Form.Select id="state" defaultValue="0">
-                  <option value="0">State</option>
-                </Form.Select>
+              <Form.Group id="pincodeOrigin">
+                <Form.Label>Pincode Origin</Form.Label>
+                <Form.Control required type="text" placeholder="Origin"
+                name="pincodeOrigin"
+                defaultValue={data.pincodeOrigin}
+                onChange={handleChange}
+                 />
+              </Form.Group>
+            </Col>
+            <Col sm={4} className="mb-3">
+              <Form.Group id="pincodeDest">
+                <Form.Label>Pincode Destination</Form.Label>
+                <Form.Control required type="text" placeholder="Destination"
+                name="pincodeDest"
+                defaultValue={data.pincodeDest}
+                onChange={handleChange}
+                 />
               </Form.Group>
             </Col>
           </Row>
@@ -281,6 +295,7 @@ export const ParcelForm = ({ token, user }) => {
               amount={ totalamount } 
               onSuccess = {successPaymentHandler}
               />
+              { loading ? "Creating Order...": "Create Order"}
             </Button>
           </div>
         </Form>
