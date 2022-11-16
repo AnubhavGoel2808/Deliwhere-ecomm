@@ -5,8 +5,11 @@ import { useState, useEffect } from "react";
 import { Col, Row, Card, Form, Button } from '@themesberg/react-bootstrap';
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import {PayPalButton} from 'react-paypal-button-v2'
 
 import { ParcelService } from "../service/ParcelService";
+
+var totalamount=1000;
 
 const customButton = withReactContent(Swal.mixin({
   customClass: {
@@ -40,7 +43,11 @@ const longitude = async (pincode) => {
 
 export const ParcelForm = ({ token, user }) => {
   const [loading, setLoading] = useState(false)
+  
+ 
+
   const [error, setError] = useState(false);
+  const [sdkReady, setsdkReady] = useState(false);
   const [name, setName] = useState({ firstName: '', lastName: ''})
   const [data, setData] = useState({
     email: '',
@@ -72,6 +79,8 @@ export const ParcelForm = ({ token, user }) => {
     city: data.city,
     parcelType: data.parcelType
   }
+
+  totalamount=parseInt(data.weight * 100)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -117,7 +126,29 @@ export const ParcelForm = ({ token, user }) => {
     customButton.fire(res.status, res.message, 'success')
     setLoading(false)
   }
+
+  const successPaymentHandler = (paymentResult) => {
+    console.log(paymentResult)
+
+  }
   useEffect(() => {
+    //payment
+    const addPayPalScript = async () => {
+       const script = document.createElement('script')
+       script.type= 'text/javascript'
+       script.src ='https://www.paypal.com/sdk/js?client-id=Abzsiativ4qv0_6gkE8APUqvclhTs6NrOKzsVRGKG5TPE5g-yWwWm7vXl2SyEr4uEFpiFqkt0zuVliRv'
+       script.async=true
+       script.onload = () => {
+        setsdkReady(true)
+       }
+       document.body.appendChild(script)
+       if(!window.paypal){
+        addPayPalScript()
+       } else {
+        setsdkReady(true);
+       }
+    }
+    //payment
     localStorage.setItem('data', JSON.stringify(finalData))
   }, [data, name])
 
@@ -259,6 +290,11 @@ export const ParcelForm = ({ token, user }) => {
           </Row>
           <div className="mt-3">
             <Button variant="primary" type="submit">
+              { loading ? "creating order...": "create order"}
+              <PayPalButton 
+              amount={ totalamount } 
+              onSuccess = {successPaymentHandler}
+              />
               { loading ? "Creating Order...": "Create Order"}
             </Button>
           </div>

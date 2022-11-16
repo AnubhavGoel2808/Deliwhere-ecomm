@@ -1,7 +1,7 @@
 // user Routes
 const express = require("express");
 const router = express.Router();
-require("dotenv").config();
+require("dotenv").config({ path: "../../../.env" });
 
 const userController = require("../Controllers/user.controller");
 const auth = require("../helpers/auth");
@@ -34,5 +34,9 @@ router.get("/user/:id", auth.authenticateToken, userController.findUserById);
 router.post("/auth/login", userController.Login);
 
 router.post("/verify", userController.verifyToken);
+
+router.get("/config/paypal",(req,res)=>{
+  res.send("Abzsiativ4qv0_6gkE8APUqvclhTs6NrOKzsVRGKG5TPE5g-yWwWm7vXl2SyEr4uEFpiFqkt0zuVliRv");
+})
 
 module.exports = router;
