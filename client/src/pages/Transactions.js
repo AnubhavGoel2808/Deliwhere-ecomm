@@ -27,7 +27,7 @@ export default ({ token, user }) => {
           setItems([]);
           return;
         }
-
+        console.log(res);
         setItems(
           user.isAdmin ? res.sort((a, b) => a.createdAt < b.createdAt ? 1 : -1)
           : res.filter(item => item.sender.username === user.username && !item.sender.isAdmin).sort((a, b) => a.createdAt < b.createdAt ? 1 : -1)

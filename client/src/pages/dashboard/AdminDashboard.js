@@ -43,7 +43,7 @@ const AdminDashboard = ({ user }) => {
         <Col xs={12} className="mb-4 d-none d-sm-block">
           <SalesValueWidget
             title="Sales Value"
-            value="10,567"
+            value="20,567"
             percentage={10.57}
           />
         </Col>
@@ -57,8 +57,8 @@ const AdminDashboard = ({ user }) => {
         <Col xs={12} sm={6} xl={4} className="mb-4">
           <CounterWidget
             category="Customers"
-            title="345k"
-            period="Feb 1 - Apr 1"
+            title="99"
+            period="Sep 1 - Nov 20"
             percentage={18.2}
             icon={faChartLine}
             iconColor="shape-secondary"
@@ -68,8 +68,8 @@ const AdminDashboard = ({ user }) => {
         <Col xs={12} sm={6} xl={4} className="mb-4">
           <CounterWidget
             category="Revenue"
-            title="$43,594"
-            period="Feb 1 - Apr 1"
+            title="Rs. 6729"
+            period="Sep 1 - Nov 20"
             percentage={28.4}
             icon={faCashRegister}
             iconColor="shape-tertiary"

@@ -43,12 +43,10 @@ const longitude = async (pincode) => {
 
 export const ParcelForm = ({ token, user }) => {
   const [loading, setLoading] = useState(false)
-  
- 
-
   const [error, setError] = useState(false);
   const [sdkReady, setsdkReady] = useState(false);
   const [name, setName] = useState({ firstName: '', lastName: ''})
+  const [amount, setAmount] = useState(0);
   const [data, setData] = useState({
     email: '',
     locationTo: '',
@@ -120,9 +118,12 @@ export const ParcelForm = ({ token, user }) => {
   console.log(parseInt(finalData.weight));
   
       console.log("Distance" + dist);
+      totalamount = parseInt(dist*5*parseInt(finalData.weight));
+      setAmount(parseInt(dist*5*parseInt(finalData.weight)))
     finalData.price = "Rs. ".concat(parseInt(dist*5*parseInt(finalData.weight)).toString());
     const res = await ParcelService.createParcel(token, finalData)
     console.log(res)
+    console.log(amount)
     customButton.fire(res.status, res.message, 'success')
     setLoading(false)
   }
@@ -236,7 +237,7 @@ export const ParcelForm = ({ token, user }) => {
           <Row>
             <Col sm={6} className="mb-3">
               <Form.Group id="address">
-                <Form.Label>Address</Form.Label>
+                <Form.Label>Destination Address</Form.Label>
                 <Form.Control required type="text" 
                 placeholder="Enter Recipient address"
                 name="locationTo"
@@ -290,13 +291,14 @@ export const ParcelForm = ({ token, user }) => {
           </Row>
           <div className="mt-3">
             <Button variant="primary" type="submit">
-              { loading ? "creating order...": "create order"}
-              <PayPalButton 
-              amount={ totalamount } 
-              onSuccess = {successPaymentHandler}
-              />
               { loading ? "Creating Order...": "Create Order"}
             </Button>
+            <span style={{margin: "15px"}}>Rs. {amount}</span>
+            <PayPalButton 
+            amount={ amount } 
+            onSuccess = {successPaymentHandler}
+            />
+            
           </div>
         </Form>
       </Card.Body>
