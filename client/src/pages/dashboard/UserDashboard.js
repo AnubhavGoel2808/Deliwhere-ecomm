@@ -39,7 +39,7 @@ const UserDashboard = ({ token, user }) => {
   return (
     <>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
-        <Dropdown className="btn-toolbar">
+      <Dropdown className="btn-toolbar">
           <Dropdown.Toggle as={Button} variant="primary" size="sm" className="me-2">
             <FontAwesomeIcon icon={faPlus} className="me-2" />New Order
           </Dropdown.Toggle>
@@ -49,14 +49,6 @@ const UserDashboard = ({ token, user }) => {
               <FontAwesomeIcon icon={faTasks} className="me-2" /> New Order
               </Link>
             </Dropdown.Item>
-            <Dropdown.Item className="fw-bold">
-              <FontAwesomeIcon icon={faCloudUploadAlt} className="me-2" /> Upload Files
-            </Dropdown.Item>
-            <Dropdown.Item className="fw-bold">
-              <FontAwesomeIcon icon={faUserShield} className="me-2" /> Preview Security
-            </Dropdown.Item>
-
-            <Dropdown.Divider />
           </Dropdown.Menu>
         </Dropdown>
 

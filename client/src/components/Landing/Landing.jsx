@@ -16,7 +16,8 @@ function Landing() {
                     <h5 className="u-text u-text-palette-4-base u-text-10">Courier Delivery Service</h5>
                     <p className="u-text u-text-palette-5-dark-3 u-text-10">One stop solution for all types of deliveries. It provides different types of courier services for most, if not all types of goods. DeliWhere provides safe and low-cost deliveries.</p>
                     <Link to={{ pathname: Routes.SignIn.path}}>
-                      <button className="u-btn u-btn-round u-button-style u-palette-4-base u-radius-50 u-text-body-alt-color u-btn-1">
+                      <button
+                      className="u-btn u-btn-round u-button-style u-palette-4-base u-radius-50 u-text-body-alt-color u-btn-1">
                         LogIn / SignUp
                       </button>
                     </Link>
